@@ -16,10 +16,8 @@ void main() async {
     Hive.registerAdapter(BookPageModelAdapter());
   }
   
-  // ബോക്സ് തുറക്കുന്നു
   var box = await Hive.openBox<BookPageModel>(_bookBoxName);
 
-  // ഫസ്റ്റ് ലോഞ്ചിൽ അസറ്റ് ഡാറ്റ ഓട്ടോമാറ്റിക്കായി ഹൈവിലേക്ക് ലോഡ് ചെയ്യാൻ
   await _loadAssetDataToHive(box);
 
   runApp(const BookApp());
@@ -28,7 +26,6 @@ void main() async {
 Future<void> _loadAssetDataToHive(Box<BookPageModel> box) async {
   if (box.isEmpty) {
     try {
-      // assets/book_content.json ഫയൽ റീഡ് ചെയ്യുന്നു
       final String jsonString = await rootBundle.loadString('assets/book_content.json');
       final List<dynamic> jsonList = json.decode(jsonString);
       

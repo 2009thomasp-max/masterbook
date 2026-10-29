@@ -1,5 +1,5 @@
-name: book_app
-description: "A professional master book management application for digital transcription."
+name: book_app_one
+description: "A new Flutter project for reading 10,000 pages with Hive and OCR."
 publish_to: 'none'
 version: 1.0.0+1
 
@@ -11,18 +11,17 @@ dependencies:
     sdk: flutter
   hive: ^2.2.3
   hive_flutter: ^1.1.0
-  cupertino_icons: ^1.0.2
   image_picker: ^1.0.7
   google_mlkit_text_recognition: ^0.11.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.0
   hive_generator: ^2.0.1
-  build_runner: ^2.4.6
+  build_runner: ^2.4.8
 
 flutter:
   uses-material-design: true
   assets:
-    - assets/book_content.json
+    - assets/

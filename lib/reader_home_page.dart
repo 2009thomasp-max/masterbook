@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:image_picker/image_picker.dart';
@@ -34,7 +33,6 @@ class _ReaderHomePageState extends State<ReaderHomePage> {
     _bookBox = Hive.box<BookPageModel>(_bookBoxName);
   }
 
-  // ക്യാമറ വഴി ഫോട്ടോ എടുത്ത് OCR വഴി ടെക്സ്റ്റ് റീഡ് ചെയ്യുന്ന മെത്തേഡ്
   Future<void> _scanTextFromCamera() async {
     final ImagePicker picker = ImagePicker();
     try {
@@ -142,7 +140,7 @@ class _ReaderHomePageState extends State<ReaderHomePage> {
       String filePath = '${Directory.current.path}/book_master_backup.tsd';
       File file = File(filePath);
 
-      String fileContent = allData.map((e) => e?.toMap().toString() ?? '').join('\n---TSD-SPLIT---\n');
+      String fileContent = allData.map((e) => e.toMap().toString()).join('\n---TSD-SPLIT---\n');
       await file.writeAsString(fileContent);
 
       _showSnackBar('TSD ഫയൽ വിജയകരമായി സേവ് ചെയ്തു: $filePath', Colors.green);
@@ -151,7 +149,6 @@ class _ReaderHomePageState extends State<ReaderHomePage> {
     }
   }
 
-  // സേവ് ചെയ്ത പുസ്തകങ്ങൾ ഫുൾ സ്ക്രീനിൽ കാണാനുള്ള ഡയലോഗ് വ്യൂവർ
   void _openSavedBooksModal() {
     showDialog(
       context: context,
@@ -271,14 +268,12 @@ class _ReaderHomePageState extends State<ReaderHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // മുകളിലെ ഹെഡർ (AppBar) പൂർണ്ണമായി ഒഴിവാക്കി ഫുൾ സ്ക്രീൻ വർക്ക് ഏരിയ നൽകിയിരിക്കുന്നു
     return Scaffold(
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(6.0),
           child: Column(
             children: [
-              // ടോപ്പ് കോംപാക്റ്റ് കൺട്രോൾ ബാർ (സേവ് ചെയ്തവ കാണാനും ബാക്ക്അപ്പ് എടുക്കാനും ക്യാമറ സ്കാൻ ചെയ്യാനും)
               Row(
                 children: [
                   Expanded(
@@ -321,7 +316,6 @@ class _ReaderHomePageState extends State<ReaderHomePage> {
                 ],
               ),
               const SizedBox(height: 6),
-              // ഫുൾ സ്ക്രീൻ ഇൻപുട്ട് ഫോം ഏരിയ (ഇനി സൈഡിൽ സ്ഥലം വേസ്റ്റ് ആകില്ല)
               Expanded(
                 child: _buildInputFormCard(),
               ),
@@ -536,7 +530,7 @@ class _ReaderHomePageState extends State<ReaderHomePage> {
                               padding: EdgeInsets.zero,
                               constraints: const BoxConstraints(),
                               onPressed: () {
-                                Navigator.pop(context); // മോഡൽ ക്ലോസ് ചെയ്ത് ഫുൾ വ്യൂവറിലേക്ക് പോകാം
+                                Navigator.pop(context);
                                 _openFullScreenReader(page);
                               },
                             ),
